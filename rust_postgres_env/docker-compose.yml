@@ -1,0 +1,57 @@
+version: "3.9"
+
+networks:
+  npos_network:
+    name: npos_network
+    ipam:
+      config:
+        - subnet: 172.29.0.0/16
+services:
+# ============================== Database ==============================
+  npos_db:
+    container_name: npos_db
+    build: ./npos_sbs_backend_db
+    image: npos_sbs_backend_db_img
+    networks:
+      npos_network:
+        ipv4_address: 172.30.0.2
+    restart: always
+    ports:
+      - '5300:5432'
+    volumes:
+      - ./npos_sbs_backend_db/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=20002000
+
+# ============================== Redis ==============================
+  npos_redis:
+    container_name: npos_redis
+    image: redis:7.0.7-alpine
+    networks:
+      npos_network:
+        ipv4_address: 172.29.0.3
+    restart: always
+    expose:
+      - 6379
+# ============================== NodeJs ==============================
+# # npos_bot_mg
+#   npos_bot_mg:
+#     container_name: npos_bot_mg
+#     build: ./npos_bot_mg
+#     image: npos_bot_mg_img
+#     networks:
+#       npos_network:
+#         ipv4_address: 172.30.0.7
+#     # restart: always
+#     volumes:
+#       - ./npos_bot_mg:/app/
+#     working_dir: /app
+#     depends_on:
+#       - npos_bot_mg_redis
+#       - npos_sbs_backend_db
+#     environment:
+#       NODE_ENV: development
+#     ports:
+#       - 3300:3000
+#     command: npm run dev
