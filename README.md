@@ -17,6 +17,8 @@
         $ git clone <project link>
     2. config .env and config.toml for n_post_api 
         > DATABASE_URL=postgres://root:20002000@172.29.0.2:5432/main_db?schema=public
+        in config.toml
+        > redis_url= "redis://172.29.0.4:6379/"
     3. build rust project goto project path and
         $ cargo build
     4. generate prisma
