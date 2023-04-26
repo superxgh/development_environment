@@ -25,4 +25,4 @@
     5. cargo build again
         $ cargo build
     6. run the project
-    
+        $ cargo run
