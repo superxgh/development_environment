@@ -45,7 +45,7 @@ services:
     ports:
       - 3300:3000
     volumes:
-      - ./app:/app/
+      - ./workspace:/workspace/
     depends_on:
       - npos_db
       - npos_redis
