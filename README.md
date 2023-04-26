@@ -18,4 +18,4 @@
     3. build rust project goto project path and
         $ cargo build
     4. generate prisma
-        $ prisma generate
+        $ cargo prisma generate
