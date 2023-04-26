@@ -17,3 +17,5 @@
         > DATABASE_URL=postgres://root:20002000@172.29.0.2:5432/main_db?schema=public
     3. build rust project goto project path and
         $ cargo build
+    4. generate prisma
+        $ prisma generate
